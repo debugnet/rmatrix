@@ -5,12 +5,17 @@
 
 int main() {
 int maxy, maxx;
-int x,delay;
-short colr;
-attr_t attr;
+int x;
+char attr;
 srand(time(NULL));
 initscr();
 start_color();
+init_pair(1,COLOR_GREEN,COLOR_BLACK);
+color_set(1,NULL);
+noecho();
+timeout(0);
+nodelay(stdscr,true);
+
 getmaxyx(stdscr, maxy, maxx);
 int lines=.9*maxx;
 short int matrix[lines][4];
@@ -31,6 +36,9 @@ srand(rand());
 matrix[x][3] = (unsigned short int)rand()*maxx/65536;
 }
 for(;;){
+attr=getch();
+if(attr=='q'){endwin();exit(0);}
+if(attr=='Q'){endwin();exit(0);}
 for(x=1;x<=lines;++x){
 // calc layer
 if(matrix[x][1]>0){
@@ -38,6 +46,7 @@ matrix[x][4] = randchr();
 }
 mvprintw(matrix[x][1],matrix[x][3],"%c",matrix[x][4]);
 mvprintw(matrix[x][2],matrix[x][3]," ");
+//mvinstr((unsigned short int)rand()*maxy/65536,(unsigned short int)rand()*maxx/65536,attr);
 // display layer
 //mvwprintw(stdscr,0,0,"%d",matrix[x][1]);
 //mvwprintw(stdscr,1,0,"%d",matrix[x][2]);
