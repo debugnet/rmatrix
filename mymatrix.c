@@ -33,8 +33,10 @@ srand(rand());
 // mvwprintw(stdscr, y, x, "printf string", var); printf equiv for ncurses
 // curs_set(0);
 // sleep(3); can allow some time to enjoi view
-mvaddch(rand()*maxy/65536,rand()*maxx/65536,randchr());
+for(;;){
+mvwprintw(stdscr,(unsigned short int)rand()*maxy/65536,(unsigned short int)rand()*maxx/65536,"%c",randchr());
 refresh();
+}
 sleep(2);
 
 endwin();
