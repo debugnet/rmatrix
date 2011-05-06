@@ -5,12 +5,15 @@
 
 int main() {
 int maxy, maxx;
-int x;
+int x,delay;
+short colr;
+attr_t attr;
 srand(time(NULL));
 initscr();
+start_color();
 getmaxyx(stdscr, maxy, maxx);
 int lines=.9*maxx;
-short int matrix[lines][3];
+short int matrix[lines][4];
 unsigned char randchr(){
 srand(rand());
 return (unsigned char)rand()*96/256+31;
@@ -27,15 +30,29 @@ matrix[x][2] = matrix[x][2] - maxy;
 srand(rand());
 matrix[x][3] = (unsigned short int)rand()*maxx/65536;
 }
-// refresh layer
+for(;;){
 for(x=1;x<=lines;++x){
+// calc layer
+if(matrix[x][1]>0){
+matrix[x][4] = randchr();
+}
+mvprintw(matrix[x][1],matrix[x][3],"%c",matrix[x][4]);
+mvprintw(matrix[x][2],matrix[x][3]," ");
+// display layer
 //mvwprintw(stdscr,0,0,"%d",matrix[x][1]);
 //mvwprintw(stdscr,1,0,"%d",matrix[x][2]);
-mvwprintw(stdscr,matrix[x][1],matrix[x][3],"%c",randchr());
+//mvprintw(matrix[x][2],matrix[x][3]," ");
 //mvwprintw(stdscr,(unsigned short int)rand()*maxy/65536,(unsigned short int)rand()*maxx/65536,"%c",randchr());
 refresh();
+matrix[x][1] = matrix[x][1]+1;
+matrix[x][2] = matrix[x][2]+1;
+if(matrix[x][2]>maxy){
+matrix[x][1]=0;
+matrix[x][2]=(unsigned short int)rand()*maxy/65536-maxy;
+matrix[x][3]=(unsigned short int)rand()*maxx/65536;
 }
-sleep(2);
+}
+}
 endwin();
 
 return 0;
