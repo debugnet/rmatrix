@@ -40,8 +40,8 @@ if(attr=='q'){endwin();exit(0);}
 if(attr=='Q'){endwin();exit(0);}
 for(x=1;x<=lines;++x){
 attron(COLOR_PAIR(1));
-if(matrix[x][1]-1>=0){
-mvprintw(matrix[x][1]-1,matrix[x][3],"%c",matrix[x][4]);
+if(matrix[x][1]>=0){
+mvprintw(matrix[x][1],matrix[x][3],"%c",matrix[x][4]);
 }
 srand(rand());
 if(matrix[x][5]>(short int)rand()){
