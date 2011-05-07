@@ -17,27 +17,28 @@ noecho();
 nodelay(stdscr,true);
 
 getmaxyx(stdscr, maxy, maxx);
-int lines=.9*maxx;
+unsigned int lines=.9*maxx;
 short int matrix[lines][5];
 unsigned char randchr(){
 srand(rand());
-return (unsigned char)rand()*95/256+31;
+return (unsigned char)rand()*94/256+32;
 }
 //init matrix data
 for(x=1;x<=lines;++x){
 srand(rand());
 matrix[x][1] = (unsigned short int)rand()*maxy/65536;
 srand(rand());
-matrix[x][2] = (unsigned short int)rand()*maxy/65536;
-if(matrix[x][2]>=matrix[x][1]){
-matrix[x][2] = matrix[x][2] - maxy;
-}
+matrix[x][2] = (unsigned short int)rand()*maxy/65536-maxy;
+if(matrix[x][2]>matrix[x][1]){matrix[x][2]=matrix[x][1];}
 srand(rand());
 matrix[x][3] = (unsigned short int)rand()*maxx/65536;
 srand(rand());
-matrix[x][5] = (short int)rand();
+matrix[x][5] = rand();
 }
 for(;;){
+getmaxyx(stdscr, maxy, maxx);
+//lines=.9*maxx;
+//short int matrix[lines][5];
 attr=getch();
 if(attr=='q'){endwin();exit(0);}
 if(attr=='Q'){endwin();exit(0);}
@@ -62,6 +63,7 @@ srand(rand());
 matrix[x][1] = matrix[x][1]+(int)(matrix[x][5]>(short int)rand());
 srand(rand());
 matrix[x][2] = matrix[x][2]+(int)(matrix[x][5]>(short int)rand());
+if(matrix[x][2]>matrix[x][1]){matrix[x][2]=matrix[x][1];}
 if(matrix[x][2]>maxy){
 matrix[x][1]=0;
 srand(rand());
