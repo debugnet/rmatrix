@@ -68,7 +68,7 @@ matrix[x][5]=rand();
 if(matrix[x][2]>=0){
 mvprintw(matrix[x][2],matrix[x][3]," ");
 }
-refresh();
 }
+refresh();
 }
 }
