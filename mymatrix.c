@@ -31,7 +31,7 @@ if(matrix[x][2]>matrix[x][1]){matrix[x][2]=matrix[x][2]-(unsigned short int)rand
 srand(rand());
 matrix[x][3] = (unsigned short int)rand()*maxx/65536;
 srand(rand());
-matrix[x][5] = rand();
+matrix[x][5] = rand()*2;
 }
 for(;;){
 getmaxyx(stdscr, maxy, maxx);
@@ -63,7 +63,7 @@ matrix[x][2]=-(unsigned short int)rand()*maxy/65536;
 srand(rand());
 matrix[x][3]=(unsigned short int)rand()*maxx/65536;
 srand(rand());
-matrix[x][5]=rand();
+matrix[x][5]=rand()*2;
 }
 }
 if(matrix[x][2]>=0){
