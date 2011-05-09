@@ -37,8 +37,7 @@ matrix[x][5] = rand()*2;
 for(;;){
 getmaxyx(stdscr, maxy, maxx);
 inp=getch();
-if(inp=='q'){endwin();exit(0);}
-if(inp=='Q'){endwin();exit(0);}
+if(inp=='q'||inp=='Q'){endwin();exit(0);}
 for(x=1;x<=lines;++x){
 attron(COLOR_PAIR(1));
 if(matrix[x][1]>=0){
@@ -71,7 +70,6 @@ if(matrix[x][2]>=0){
 mvprintw(matrix[x][2],matrix[x][3]," ");
 }
 }
-refresh();
 attron(COLOR_PAIR(1));
 for(x=0;x<=10;++x){
 srand(rand());
