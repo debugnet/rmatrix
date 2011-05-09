@@ -5,7 +5,7 @@
 int main() {
 int maxy, maxx;
 int x;
-char attr;
+char inp;
 srand(time(NULL));
 initscr();
 start_color();
@@ -15,6 +15,7 @@ init_pair(2,COLOR_WHITE,-1);
 color_set(1,NULL);
 noecho();
 nodelay(stdscr,true);
+curs_set(0);
 getmaxyx(stdscr, maxy, maxx);
 unsigned int lines=1.5*maxx;
 short int matrix[lines][5];
@@ -35,9 +36,9 @@ matrix[x][5] = rand()*2;
 }
 for(;;){
 getmaxyx(stdscr, maxy, maxx);
-attr=getch();
-if(attr=='q'){endwin();exit(0);}
-if(attr=='Q'){endwin();exit(0);}
+inp=getch();
+if(inp=='q'){endwin();exit(0);}
+if(inp=='Q'){endwin();exit(0);}
 for(x=1;x<=lines;++x){
 attron(COLOR_PAIR(1));
 if(matrix[x][1]>=0){
@@ -71,5 +72,14 @@ mvprintw(matrix[x][2],matrix[x][3]," ");
 }
 }
 refresh();
+attron(COLOR_PAIR(1));
+for(x=0;x<=10;++x){
+srand(rand());
+move((unsigned short int)rand()*maxy/65536,(unsigned short int)rand()*maxx/65536);
+if((char)(A_CHARTEXT&inch())!=' '){
+printw("%c",randchr());
+}
+refresh();
+}
 }
 }
