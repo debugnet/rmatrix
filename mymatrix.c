@@ -34,7 +34,7 @@ matrix[x][3] = (unsigned short int)rand()*maxx/65536;
 srand(rand());
 matrix[x][5] = rand();
 }
-for(;;){
+while(1){
 getmaxyx(stdscr, maxy, maxx);
 inp=getch();
 if(inp=='q'||inp=='Q'){endwin();exit(0);}
