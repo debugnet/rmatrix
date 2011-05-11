@@ -7,6 +7,7 @@ int maxy, maxx;
 int x;
 char inp;
 srand(time(NULL));
+unsigned short int delay=(unsigned short int)rand()*1000/65536+100;
 initscr();
 start_color();
 use_default_colors();
@@ -67,7 +68,7 @@ if((char)(A_CHARTEXT&inch())!=' '){
 printw("%c",randchr());
 }
 refresh();
-usleep(800);
+usleep(delay);
 }
 }
 }
