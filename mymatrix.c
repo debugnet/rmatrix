@@ -33,7 +33,7 @@ matrix[x][5] = rand();
 while(1){
 getmaxyx(stdscr, maxy, maxx);
 inp=getch();
-if(inp=='q'||inp=='Q'){endwin();exit(0);}
+if(inp=='q'||inp=='Q'){clear();refresh();endwin();exit(0);}
 for(x=1;x<=lines;++x){
 attron(COLOR_PAIR(1));
 if(matrix[x][1]>=0){
