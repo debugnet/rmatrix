@@ -7,7 +7,7 @@ int maxy, maxx;
 int x;
 char inp;
 srand(time(NULL));
-unsigned short int delay=(unsigned short int)rand()*1000/65536+100;
+unsigned short int delay=(unsigned short int)rand()*2000/65536+20000;
 initscr();
 start_color();
 use_default_colors();
@@ -43,6 +43,10 @@ if(matrix[x][5]>(short int)rand()){
 matrix[x][1] = matrix[x][1]+1;
 matrix[x][4] = randchr();
 }
+move((unsigned short int)rand()*maxy/65536,(unsigned short int)rand()*maxx/65536);
+if((char)(A_CHARTEXT&inch())!=' '){
+printw("%c",randchr());
+}
 attron(COLOR_PAIR(2));
 if(matrix[x][1]>=0){
 mvprintw(matrix[x][1],matrix[x][3],"%c",matrix[x][4]);
@@ -61,14 +65,7 @@ if(matrix[x][2]>=0){
 mvprintw(matrix[x][2],matrix[x][3]," ");
 }
 }
-attron(COLOR_PAIR(1));
-for(x=0;x<=10;++x){
-move((unsigned short int)rand()*maxy/65536,(unsigned short int)rand()*maxx/65536);
-if((char)(A_CHARTEXT&inch())!=' '){
-printw("%c",randchr());
-}
 refresh();
 usleep(delay);
-}
 }
 }
