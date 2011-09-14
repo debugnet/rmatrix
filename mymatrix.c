@@ -7,7 +7,7 @@ int maxy, maxx;
 int x;
 char inp;
 srand(time(NULL));
-unsigned short int delay=(unsigned short int)rand()*2000/65536+20000;
+unsigned short int delay=(unsigned short int)rand()*30000/65536+5000;
 initscr();
 start_color();
 use_default_colors();
