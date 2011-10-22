@@ -7,6 +7,7 @@ int maxy, maxx;
 int x;
 char inp;
 srand(time(NULL));
+srand48(time(NULL));
 unsigned short int delay=(unsigned short int)rand()*30000/65536+5000;
 initscr();
 start_color();
@@ -18,7 +19,7 @@ noecho();
 nodelay(stdscr,true);
 curs_set(0);
 getmaxyx(stdscr, maxy, maxx);
-unsigned int lines=1.5*maxx;
+unsigned int lines=((float)drand48())*2*maxx+1;
 short int matrix[lines][5];
 unsigned char randchr(){
 return (unsigned char)rand()*95/256+32;
