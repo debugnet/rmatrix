@@ -1,0 +1,10 @@
+rMatrix project written by debug.net@gmail.com:
+
+requires ncurses-dev library
+make
+make install
+
+If you require installation in another location, specify the base folder (ie /usr/local) and it will install in the subfolder ./bin/
+this may require elevated privileges.
+sudo make PREFIX=/usr/local install
+

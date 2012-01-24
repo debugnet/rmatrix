@@ -22,13 +22,13 @@ unsigned int lines=((float)drand48())*2*(maxx+maxy)+1;
 unsigned long int delay=(float)drand48()*(8*lines+30000)+5000;
 short int matrix[lines][5];
 unsigned char randchr(){
-return (unsigned char)rand()*95/256+32;
+return (unsigned char)rand()%95+32;
 }
 for(x=1;x<=lines;++x){
-matrix[x][1] = -(unsigned short int)rand()*maxy/65536;
-matrix[x][2] = -(unsigned short int)rand()*maxy/65536;
-if(matrix[x][2]>matrix[x][1]){matrix[x][2]=matrix[x][2]-(unsigned short int)rand()*maxy/65536;}
-matrix[x][3] = (unsigned short int)rand()*maxx/65536;
+matrix[x][1] = -(unsigned short int)rand()%maxy;
+matrix[x][2] = -(unsigned short int)rand()%maxy;
+if(matrix[x][2]>matrix[x][1]){matrix[x][2]=matrix[x][2]-(unsigned short int)rand()%maxy;}
+matrix[x][3] = (unsigned short int)rand()%maxx;
 matrix[x][5] = rand();
 }
 while(1){
@@ -44,7 +44,7 @@ if(matrix[x][5]>(short int)rand()){
 matrix[x][1] = matrix[x][1]+1;
 matrix[x][4] = randchr();
 }
-move((unsigned short int)rand()*maxy/65536,(unsigned short int)rand()*maxx/65536);
+move((unsigned short int)rand()%maxy,(unsigned short int)rand()%maxx);
 if((char)(A_CHARTEXT&inch())!=' '){
 printw("%c",randchr());
 }
@@ -54,11 +54,11 @@ mvprintw(matrix[x][1],matrix[x][3],"%c",matrix[x][4]);
 }
 if(matrix[x][5]>(short int)rand()){
 matrix[x][2] = matrix[x][2]+1;
-if(matrix[x][2]>matrix[x][1]){matrix[x][2]=matrix[x][2]-(unsigned short int)rand()*maxy/65536;}
+if(matrix[x][2]>matrix[x][1]){matrix[x][2]=matrix[x][2]-(unsigned short int)rand()%maxy;}
 if(matrix[x][2]>maxy){
 matrix[x][1]=0;
-matrix[x][2]=-(unsigned short int)rand()*maxy/65536;
-matrix[x][3]=(unsigned short int)rand()*maxx/65536;
+matrix[x][2]=-(unsigned short int)rand()%maxy;
+matrix[x][3]=(unsigned short int)rand()%maxx;
 matrix[x][5]=rand();
 }
 }
