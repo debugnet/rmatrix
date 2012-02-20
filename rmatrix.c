@@ -18,7 +18,7 @@ noecho();
 nodelay(stdscr,true);
 curs_set(0);
 getmaxyx(stdscr, maxy, maxx);
-unsigned int lines=((float)drand48())*2*(maxx+maxy)+1;
+unsigned long int lines=((float)drand48())*2*(maxx+maxy)+1;
 unsigned long int delay=(float)drand48()*(8*lines+30000)+5000;
 signed long int matrix[lines][5];
 unsigned char randchr(){
