@@ -45,7 +45,7 @@ matrix[x][1] = matrix[x][1]+1;
 matrix[x][4] = randchr();
 }
 move((unsigned long int)rand()%maxy,(unsigned long int)rand()%maxx);
-if((char)(A_CHARTEXT&inch())!=' '){
+if((unsigned char)(A_CHARTEXT&inch())!=' '){
 printw("%c",randchr());
 }
 attron(COLOR_PAIR(2));

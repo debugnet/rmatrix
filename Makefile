@@ -9,6 +9,6 @@ rmatrix:
 		$(CC) $(CFLAGS) -o rain/rain rain/rain.c
 clean:		
 		rm rmatrix rmatrixb rain/rain
-install:	
+install:	rmatrix
 		cp $(CFILES) $(PREFIX)/bin/
 
