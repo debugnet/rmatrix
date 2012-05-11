@@ -18,16 +18,16 @@ noecho();
 nodelay(stdscr,true);
 curs_set(0);
 getmaxyx(stdscr, maxy, maxx);
-unsigned long int lines=((float)drand48())*2*(maxx+maxy)+1;
-unsigned long int delay=(float)drand48()*(8*lines+30000)+5000;
+unsigned int lines=(unsigned int)(drand48()*2*(maxx+maxy))+1;
+unsigned int delay=((unsigned int)(drand48()*20000)-(lines%20000)*2)+1000;
 signed long int matrix[lines][5];
 unsigned char randchr(){
-return (unsigned char)rand()%95+32;
+return rand()%95+32;
 }
-for(x=1;x<=lines;++x){
+for(x=0;x<lines;x++){
 matrix[x][1] = -((unsigned long int)rand()%maxy*2);
 matrix[x][2] = -((unsigned long int)rand()%maxy*2);
-if(matrix[x][2]>matrix[x][1]){matrix[x][2]=matrix[x][2]-(unsigned long int)rand()%maxy;}
+if(matrix[x][2]>=matrix[x][1]) matrix[x][2]-=(unsigned int)(rand()%maxy);
 matrix[x][3] = (unsigned long int)rand()%maxx;
 matrix[x][5] = rand();
 }
@@ -35,36 +35,32 @@ while(1){
 getmaxyx(stdscr, maxy, maxx);
 inp=getch();
 if(inp=='q'||inp=='Q'){clear();refresh();endwin();exit(0);}
-for(x=1;x<=lines;++x){
+for(x=0;x<lines;x++){
 attron(COLOR_PAIR(1));
 if(matrix[x][1]>=0){
 mvprintw(matrix[x][1],matrix[x][3],"%c",matrix[x][4]);
 }
 if(matrix[x][5]>rand()){
-matrix[x][1] = matrix[x][1]+1;
-matrix[x][4] = randchr();
+matrix[x][1]++;
+matrix[x][4]=randchr();
 }
-move((unsigned long int)rand()%maxy,(unsigned long int)rand()%maxx);
+move((unsigned int)rand()%maxy,(unsigned int)rand()%maxx);
 if((unsigned char)(A_CHARTEXT&inch())!=' '){
 printw("%c",randchr());
 }
 attron(COLOR_PAIR(2));
-if(matrix[x][1]>=0){
-mvprintw(matrix[x][1],matrix[x][3],"%c",matrix[x][4]);
-}
+if(matrix[x][1]>=0) mvprintw(matrix[x][1],matrix[x][3],"%c",matrix[x][4]);
 if(matrix[x][5]>rand()){
 matrix[x][2] = matrix[x][2]+1;
-if(matrix[x][2]>matrix[x][1]){matrix[x][2]=matrix[x][2]-(unsigned long int)rand()%maxy;}
+if(matrix[x][2]>matrix[x][1]) matrix[x][2]-=(unsigned int)(rand()%maxy);
 if(matrix[x][2]>maxy){
 matrix[x][1]=0;
-matrix[x][2]=-(unsigned long int)rand()%maxy;
-matrix[x][3]=(unsigned long int)rand()%maxx;
+matrix[x][2]=-(unsigned int)rand()%maxy;
+matrix[x][3]=(unsigned int)rand()%maxx;
 matrix[x][5]=rand();
 }
 }
-if(matrix[x][2]>=0){
-mvprintw(matrix[x][2],matrix[x][3]," ");
-}
+if(matrix[x][2]>=0) mvprintw(matrix[x][2],matrix[x][3]," ");
 }
 refresh();
 usleep(delay);

@@ -1,6 +1,6 @@
 # Makefile rmatrix
 CC=gcc
-CFLAGS=-s -w -Os -lcurses
+CFLAGS=-w -Os -lcurses
 PREFIX=$(HOME)
 CFILES=		rmatrix rmatrixb rain/rain
 rmatrix:
