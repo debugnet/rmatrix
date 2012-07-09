@@ -54,8 +54,9 @@ if(matrix[x][5]>rand()){
 matrix[x][2] = matrix[x][2]+1;
 if(matrix[x][2]>matrix[x][1]) matrix[x][2]-=(unsigned int)(rand()%maxy);
 if(matrix[x][2]>maxy){
-matrix[x][1]=0;
-matrix[x][2]=-(unsigned int)rand()%maxy;
+matrix[x][1] = -((unsigned long int)rand()%maxy*2);
+matrix[x][2] = -((unsigned long int)rand()%maxy*2);
+if(matrix[x][2]>=matrix[x][1]) matrix[x][2]-=(unsigned int)(rand()%maxy);
 matrix[x][3]=(unsigned int)rand()%maxx;
 matrix[x][5]=rand();
 }
