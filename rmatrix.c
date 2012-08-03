@@ -64,7 +64,7 @@ printw("%c",randchr());
 }
 attron(COLOR_PAIR(2));
 if(matrix[x][1]>=0) mvprintw(matrix[x][1],matrix[x][3],"%c",matrix[x][4]);
-if(matrix[x][5]>rand()){
+if(matrix[x][5]>=rand()){
 matrix[x][2]++;
 if(matrix[x][2]>=matrix[x][1]) matrix[x][2]=matrix[x][1]-1;
 if(matrix[x][2]>maxy){
