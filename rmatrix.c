@@ -2,6 +2,11 @@
 #include <curses.h>
 #include <stdlib.h>
 
+/* adjustment factors for other machines */
+#define THICKNESS 2
+#define MAXDELAY 20000
+#define MINDELAY 1000
+
 int main() {
 /* variables */
 int maxy, maxx;
@@ -23,8 +28,8 @@ curs_set(0);
 
 /* declare matrix */
 getmaxyx(stdscr, maxy, maxx);
-unsigned int lines=(unsigned int)(drand48()*2*(maxx+maxy))+1;
-unsigned int delay=((unsigned int)(drand48()*20000)-(lines%20000)*2)+1000;
+unsigned int lines=(unsigned int)(drand48()*THICKNESS*(maxx+maxy))+1;
+unsigned int delay=((unsigned int)(drand48()*MAXDELAY)-(lines%MAXDELAY)*2)+MINDELAY;
 signed long int matrix[lines][5];
 
 /* functions */
