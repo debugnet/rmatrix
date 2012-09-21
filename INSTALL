@@ -1,6 +1,8 @@
 rMatrix project written by debug.net@gmail.com:
 
-requires ncurses-dev library
+prerequisites: ncurses-dev
+
+apt-get install ncurses-dev
 make
 make install
 
