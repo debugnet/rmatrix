@@ -36,7 +36,7 @@ signed long int matrix[lines][5];
 unsigned char randchr(){
 return rand()%95+32;
 }
-void reinit(int y){
+void reinit(){
 matrix[x][1] = -((unsigned long int)rand()%maxy*2);
 matrix[x][2] = -((unsigned long int)rand()%maxy*2);
 if(matrix[x][2]>=matrix[x][1]) matrix[x][2]-=(unsigned int)(rand()%maxy);
@@ -46,7 +46,7 @@ matrix[x][5]=rand();
 
 /* init matrix */
 for(x=0;x<lines;x++){
-reinit(x);
+reinit();
 }
 
 /* loop */
@@ -72,9 +72,7 @@ if(matrix[x][1]>=0) mvprintw(matrix[x][1],matrix[x][3],"%c",matrix[x][4]);
 if(matrix[x][5]>=rand()){
 matrix[x][2]++;
 if(matrix[x][2]>=matrix[x][1]) matrix[x][2]=matrix[x][1]-1;
-if(matrix[x][2]>maxy){
-reinit(x);
-}
+if(matrix[x][2]>maxy)reinit();
 }
 if(matrix[x][2]>=0) mvprintw(matrix[x][2],matrix[x][3]," ");
 }
