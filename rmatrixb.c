@@ -30,7 +30,7 @@ curs_set(0);
 getmaxyx(stdscr, maxy, maxx);
 unsigned int lines=(unsigned int)(drand48()*THICKNESS*(maxx+maxy))+1;
 unsigned int delay=((unsigned int)(drand48()*MAXDELAY)-(lines%MAXDELAY)*2)+MINDELAY;
-signed long int matrix[lines][5];
+signed long int matrix[lines][4];
 
 /* functions */
 unsigned char randchr(){
@@ -41,7 +41,7 @@ matrix[x][1] = -((unsigned long int)rand()%maxy*2);
 matrix[x][2] = -((unsigned long int)rand()%maxy*2);
 if(matrix[x][2]>=matrix[x][1]) matrix[x][2]-=(unsigned int)(rand()%maxy);
 matrix[x][3]=(unsigned int)rand()%maxx;
-matrix[x][5]=rand();
+matrix[x][0]=rand();
 }
 
 /* init matrix */
@@ -59,7 +59,7 @@ attron(COLOR_PAIR(1));
 if(matrix[x][1]>=0){
 mvprintw(matrix[x][1],matrix[x][3],"%c",matrix[x][4]);
 }
-if(matrix[x][5]>rand()){
+if(matrix[x][0]>rand()){
 matrix[x][1]++;
 matrix[x][4]=randchr();
 }
@@ -69,7 +69,7 @@ printw("%c",randchr());
 }
 attron(COLOR_PAIR(2));
 if(matrix[x][1]>=0) mvprintw(matrix[x][1],matrix[x][3],"%c",matrix[x][4]);
-if(matrix[x][5]>=rand()){
+if(matrix[x][0]>=rand()){
 matrix[x][2]++;
 if(matrix[x][2]>=matrix[x][1]) matrix[x][2]=matrix[x][1]-1;
 if(matrix[x][2]>maxy)reinit();
