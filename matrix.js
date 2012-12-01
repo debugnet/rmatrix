@@ -1,5 +1,5 @@
-window.onload = function(){
-var canvas = document.getElementById("canvas");
+function matrix(){
+var canvas = document.getElementById("matrix");
 var ctx = canvas.getContext("2d");
 //Make the canvas occupy the full page
 var maxx = window.innerWidth, maxy = window.innerHeight;
@@ -30,13 +30,13 @@ if(matrix[x][1]>=0){ctx.fillRect(matrix[x][3],matrix[x][1],1,1);}
 if(matrix[x][4]>Math.random()){matrix[x][1]++;}
 //white
 ctx.fillStyle = "rgba(96,128,96,1)";
-if(matrix[x][1]>0){ctx.fillRect(matrix[x][3],matrix[x][1],1,1);}
+if(matrix[x][1]>=0){ctx.fillRect(matrix[x][3],matrix[x][1],1,1);}
 if(matrix[x][4]>=Math.random()){
 matrix[x][2]++;
 if(matrix[x][2]>=matrix[x][1]){matrix[x][2]=matrix[x][1]-1;}
 if(matrix[x][2]>maxy){reinit();}
 }
-if(matrix[x][2]>0){
+if(matrix[x][2]>=0){
 ctx.fillStyle = "black";
 ctx.fillRect(matrix[x][3],matrix[x][2],1,1);
 //ctx.fillStyle = "rgba(0,64,0,1)";
