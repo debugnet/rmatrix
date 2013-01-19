@@ -3,9 +3,10 @@
 #include <stdlib.h>
 
 /* adjustment factors for other machines */
-#define THICKNESS 2
-#define MAXDELAY 20000
+#define THICKNESS .15
+#define MAXDELAY 100000
 #define MINDELAY 1000
+#define PLOT .5
 
 int main() {
 /* variables */
@@ -28,9 +29,9 @@ curs_set(0);
 
 /* declare matrix */
 getmaxyx(stdscr, maxy, maxx);
-unsigned int lines=(unsigned int)(drand48()*THICKNESS*(maxx+maxy))+1;
-unsigned int delay=((unsigned int)(drand48()*MAXDELAY)-(lines%MAXDELAY)*2)+MINDELAY;
-signed long int matrix[lines][4];
+unsigned int lines=(unsigned int)(drand48()*THICKNESS*(maxx*maxy)+1);
+unsigned int delay=(unsigned int)((unsigned int)(MAXDELAY*(lines/(THICKNESS*(maxx*maxy))))+MINDELAY);
+signed long int matrix[lines][5];
 
 /* functions */
 unsigned char randchr(){
@@ -63,9 +64,10 @@ if(matrix[x][0]>rand()){
 matrix[x][1]++;
 matrix[x][4]=randchr();
 }
+/* random plot */
+if(rand()>(PLOT*RAND_MAX)){
 move((unsigned int)rand()%maxy,(unsigned int)rand()%maxx);
-if((unsigned char)(A_CHARTEXT&inch())!=' '){
-printw("%c",randchr());
+if((unsigned char)(A_CHARTEXT&inch())!=' ') printw("%c",randchr());
 }
 attron(COLOR_PAIR(2));
 if(matrix[x][1]>=0) mvprintw(matrix[x][1],matrix[x][3],"%c",matrix[x][4]);
