@@ -1,0 +1,1 @@
+> Written from an interpretation of the matrix rain code I designed in QBASIC back in 1999-2000, since translated to C. The idea was based on the [cmatrix](http://www.asty.org/cmatrix/) concept but not the code.  It coincidentally uses the ncurses library to accomplish the column/row addressing of the terminal.
