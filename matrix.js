@@ -7,7 +7,7 @@ canvas.width = maxx;
 canvas.height = maxy;
 var x;
 
-ctx.setLineWidth(1);
+ctx.LineWidth=1;
 var lines=Math.round(Math.random()*2*(maxx+maxy))+1;
 var matrix=new Array(lines);
 for(x=0;x<matrix.length;x++){matrix[x]=new Array(4);}
