@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include <curses.h>
 #include <stdlib.h>
+#include <unistd.h>
+#include <time.h>
 
 int main() {
 int maxy, maxx;

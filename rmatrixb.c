@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <curses.h>
 #include <stdlib.h>
+#include <unistd.h>
+#include <time.h>
 
 /* adjustment factors for other machines */
 #define THICKNESS .15

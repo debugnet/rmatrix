@@ -1,11 +1,13 @@
 #include <stdio.h>
 #include <curses.h>
 #include <stdlib.h>
+#include <unistd.h>
+#include <time.h>
 
 /* adjustment factors for other machines */
-#define THICKNESS .15
-#define MAXDELAY 100000
-#define MINDELAY 1000
+#define THICKNESS .1
+#define MAXDELAY 50000
+#define MINDELAY 500
 #define PLOT .5
 
 int main() {
