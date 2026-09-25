@@ -1,3 +1,9 @@
+#ifdef __unix__
+#define OS_Windows 0
+#elif defined(_WIN32) || defined(WIN32)
+#define OS_Windows 1
+#endif
+
 #include <sys/ioctl.h>
 #include <stdio.h>
 //#include <curses.h>
@@ -7,12 +13,13 @@
 
 /* adjustment factors for other machines */
 #define THICKNESS .1
-#define MAXDELAY 5000
-#define MINDELAY 50
+#define MAXDELAY 20000
+#define MINDELAY 400
 #define PLOT .5
 
 int main() {
 void getmaxyx(int *maxx,int *maxy){
+if(OS_Windows){
 #ifdef TIOCGSIZE
  struct ttysize ts;
  ioctl(STDIN_FILENO,TIOCGSIZE,&ts);
@@ -24,6 +31,12 @@ void getmaxyx(int *maxx,int *maxy){
  *maxy=ts.ws_col;
  *maxx=ts.ws_row;
 #endif
+}else if(!OS_Windows){
+CONSOLE_SCREEN_BUFFER_INFO csbi;
+GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE),&csbi);
+*maxy=csbi.srWindow.Right-csbi.srWindow.Left+1;
+*maxx=csbi.srWindow.Bottom-csbi.srWindow.Top+1;
+}
 }
 
 /*
