@@ -1,4 +1,4 @@
-#ifdef __unix__
+#ifdef __unix__ || linux
 #define OS_Windows 0
 #elif defined(_WIN32) || defined(WIN32)
 #define OS_Windows 1
@@ -20,7 +20,7 @@
 
 int main() {
 void getmaxyx(int *maxx,int *maxy){
-if(OS_Windows){
+if(!OS_Windows){
 #ifdef TIOCGSIZE
  struct ttysize ts;
  ioctl(STDIN_FILENO,TIOCGSIZE,&ts);
@@ -32,11 +32,13 @@ if(OS_Windows){
  *maxy=ts.ws_col;
  *maxx=ts.ws_row;
 #endif
-}else if(!OS_Windows){
+}else if(OS_Windows){
+#if defined(_WIN32) || defined(WIN32)
 CONSOLE_SCREEN_BUFFER_INFO csbi;
 GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE),&csbi);
 *maxy=csbi.srWindow.Right-csbi.srWindow.Left+1;
 *maxx=csbi.srWindow.Bottom-csbi.srWindow.Top+1;
+#endif
 }
 }
 
