@@ -88,8 +88,8 @@ signed long int matrix[lines][5];
 
 /* functions */
 unsigned short int randchr(){
-unsigned short int c=rand()%190+32;
-if(c>126) c+=12225;
+unsigned short int c=rand()%177+32;
+if(c>126) c+=12226;
 return c;//rand()%(12799-12784)+12784;
 }
 void reinit(){
